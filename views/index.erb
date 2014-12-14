@@ -5,5 +5,18 @@
 </head>
 <body>
   <h1>XTask</h1>
+
+  <div>
+    <ul>
+      <% @tasks.each do |t| %>
+        <li>
+          <%= t.name %> <br />
+          <%= t.description %>
+          (<%= t.monday %>
+          <%= t.start_time %>)
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </body>
 </html>

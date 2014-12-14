@@ -14,6 +14,6 @@ require_relative 'xtask.rb'
 set :bind, '0.0.0.0'
 
 get '/' do
-  
+  @tasks = XTask::TaskRepo.new.find_all
   erb :index
 end
