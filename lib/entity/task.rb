@@ -1,8 +1,9 @@
 module XTask
   class Task
-    attr_reader :name, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday
+    attr_reader :name, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :id
     attr_accessor :description, :start_time, :end_time, :type
     def initialize(params)
+      @id = params[:id]
       @name = params[:name]
       @monday = params[:monday] || false
       @tuesday = params[:tuesday] || false

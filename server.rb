@@ -3,11 +3,11 @@ require 'sinatra/json'
 require "sinatra/reloader" if development?
 require 'pry-byebug'
 
-module XTask
-  def self.db
-    @db ||= PG.connect(dbname: 'songify-db')
-  end
-end
+# module XTask
+#   def self.db
+#     @db ||= PG.connect(dbname: 'xtask-db')
+#   end
+# end
 
 require_relative 'xtask.rb'
 
