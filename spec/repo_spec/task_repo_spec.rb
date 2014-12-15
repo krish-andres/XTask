@@ -14,7 +14,7 @@ describe XTask::TaskRepo do
 
   describe "create and find by" do
     it "adds a task to the list" do
-      task = tasks.create({name: "Task 1", description: "First task", type: "Exercise", start_time: "6:00pm", end_time: "8:00pm", monday: true, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: one}) 
+      task = tasks.create({name: "Task 1", description: "First task", type: "Personal", start_time: "6:00pm", end_time: "8:00pm", monday: true, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: one}) 
       expect(task).to be_a(XTask::Task)
       expect(task.monday).to eq('t')
       expect(task.tuesday).to eq('f')
@@ -24,17 +24,29 @@ describe XTask::TaskRepo do
       expect(task.schedule.name).to eq("Schedule 1")
     end
 
-    it "retrieves an existing task" do
-      tasks.create({name: "Task 1", description: "First task", type: "Exercise", start_time: "6:00pm", end_time: "8:00pm", monday: true, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: two}) 
-      task = tasks.find_by({name: "Task 1"}).first
+    it "retrieves an existing task from a schedule given the task name" do
+      tasks.create({name: "Task 1", description: "First task", type: "Social", start_time: "6:00pm", end_time: "8:00pm", monday: true, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: two}) 
+      task = tasks.find_by({schedule: two, name: "Task 1"}).first
       expect(task).to be_a(XTask::Task)
       expect(task.description).to eq("First task")
       expect(task.schedule.name).to eq("Schedule 2")
     end
 
-    # it "retrieves all tasks of a given type AND/OR day" do
+    it "retrieves all tasks from a schedule on a particular day" do
+      tasks.create({name: "Task 1", description: "First task", type: "School", start_time: "6:00pm", end_time: "8:00pm", monday: true, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: two}) 
+      tasks.create({name: "Task 2", description: "Second task", type: "Personal", start_time: "6:00am", end_time: "8:00am", monday: true, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: two}) 
+      tasks.create({name: "Task 3", description: "Third task", type: "Social", start_time: "8:00pm", end_time: "10:00pm", monday: false, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: two}) 
+      tasks.create({name: "Task 4", description: "Fourth task", type: "Social", start_time: "8:00pm", end_time: "10:00pm", monday: false, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: one})
+      monday_tasks = tasks.find_by({schedule: two, monday: true})
+      expect(monday_tasks.length).to eq(2)
+      expect(monday_tasks.first).to be_a(XTask::Task)
+      expect(monday_tasks.first.monday).to eq("t")
+      wednesday_tasks = tasks.find_by({schedule: two, wednesday: true})
+      expect(wednesday_tasks.length).to eq(3)
+      expect(wednesday_tasks.first).to be_a(XTask::Task)
+      expect(wednesday_tasks.first.wednesday).to eq("t")
+    end
 
-    # end
   end
 
   describe "find and find all" do
