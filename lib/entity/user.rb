@@ -1,6 +1,6 @@
 module XTask
   class User
-  attr_reader :username, :email
+  attr_reader :username, :email, :id
   attr_accessor :password
 
     def initialize(params)
