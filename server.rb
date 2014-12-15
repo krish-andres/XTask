@@ -33,3 +33,25 @@ get '/schedules/:id' do
 
   erb :schedule
 end
+
+post '/schedules/:id/tasks' do
+  puts params
+  @name = params[:taskName]
+  @description = params[:taskDesc]
+  @type = params[:type]
+  @start_time = params[:taskStart]
+  @end_time = params[:taskEnd]
+  @monday = params[:monday] 
+  @tuesday = params[:tuesday]
+  @wednesday = params[:wednesday]
+  @thursday = params[:thursday]
+  @friday = params[:friday]
+  @saturday = params[:saturday]
+  @sunday = params[:sunday]
+  @schedule = XTask::ScheduleRepo.new.find(params[:scheduleId])
+  XTask::TaskRepo.new.create({name: @name, description: @description, type: @type, start_time: @start_time, end_time: @end_time, monday: @monday, tuesday: @tuesday, wednesday: @wednesday, thursday: @thursday, friday: @friday, saturday: @saturday, sunday: @sunday, schedule: @schedule})
+  redirect_to ("schedules/#{@schedule.id}")
+end
+
+
+

@@ -5,13 +5,13 @@ module XTask
     def initialize(params)
       @id = params[:id]
       @name = params[:name]
-      @monday = params[:monday] || false
-      @tuesday = params[:tuesday] || false
-      @wednesday = params[:wednesday] || false
-      @thurday = params[:thursday] || false
-      @friday = params[:friday] || false
-      @saturday = params[:saturday] || false
-      @sunday = params[:sunday] || false
+      @monday = params[:monday] 
+      @tuesday = params[:tuesday] 
+      @wednesday = params[:wednesday] 
+      @thurday = params[:thursday] 
+      @friday = params[:friday] 
+      @saturday = params[:saturday] 
+      @sunday = params[:sunday] 
       @description = params[:description]
       @start_time = params[:start_time]
       @end_time = params[:end_time]
