@@ -15,7 +15,8 @@ module XTask
           thursday BOOLEAN, 
           friday BOOLEAN, 
           saturday BOOLEAN, 
-          sunday BOOLEAN 
+          sunday BOOLEAN, 
+          schedule_id INTEGER REFERENCES schedules (id)
         );
       SQL
       @db.exec(command)
@@ -42,6 +43,8 @@ module XTask
       friday = params['friday']
       saturday = params['saturday']
       sunday = params['sunday']
+      schedule_id = params['schedule_id']
+      schedule = XTask::ScheduleRepo.new.find(schedule_id)
 
       XTask::Task.new({
         id: id, 
@@ -56,7 +59,8 @@ module XTask
         thursday: thursday, 
         friday: friday, 
         saturday: saturday, 
-        sunday: sunday
+        sunday: sunday, 
+        schedule: schedule
       })
     end
 
@@ -72,13 +76,14 @@ module XTask
       thursday = params[:thursday]
       friday = params[:friday]
       saturday = params[:saturday]
-      sunday = params[:sunday]  
+      sunday = params[:sunday] 
+      schedule_id = params[:schedule].id 
       command = <<-SQL
-        INSERT INTO tasks(name, description, type, start_time, end_time, monday, tuesday, wednesday, thursday, friday, saturday, sunday)
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+        INSERT INTO tasks(name, description, type, start_time, end_time, monday, tuesday, wednesday, thursday, friday, saturday, sunday, schedule_id)
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12, $13)
         RETURNING *;
       SQL
-      result = @db.exec(command, [name, description, type, start_time, end_time, monday, tuesday, wednesday, thursday, friday, saturday, sunday])
+      result = @db.exec(command, [name, description, type, start_time, end_time, monday, tuesday, wednesday, thursday, friday, saturday, sunday, schedule_id])
       build_task(result.first)
     end
 
@@ -94,11 +99,11 @@ module XTask
           WHERE name=$1;
         SQL
         results = @db.exec(command + spec, [name])
-      elsif type
-        spec = <<-SQL
-          WHERE type=$1;
-        SQL
-        results = @db.exec(command + spec, [type])
+      # elsif type
+      #   spec = <<-SQL
+      #     WHERE type=$1;
+      #   SQL
+      #   results = @db.exec(command + spec, [type])
       end
       results.map { |result| build_task(result) }
     end
@@ -111,15 +116,15 @@ module XTask
       build_task(result.first)
     end
 
-    def find_all
+    def find_all(params)
+      schedule = params[:schedule]
+      schedule_id = schedule.id
       command = <<-SQL
-        SELECT * FROM tasks; 
+        SELECT * FROM tasks WHERE schedule_id=$1; 
       SQL
-      results = @db.exec(command)
+      results = @db.exec(command, [schedule_id])
       results.map { |result| build_task(result) }
     end
-
-
 
   end
 end
