@@ -9,40 +9,35 @@
 </head>
 <body>
     
-        <div class="masthead clearfix">
-            <div class="nav-wrapper">
-              <!-- <h3 class="masthead-brand">XTask</h3> -->
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><h2>XTask</h2></a>
-              </div>
-               <div id="navbar" class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right" role="form">
-                  <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
-                  </div>
-                  <button type="submit" class="btn btn-success">Sign in</button>
-                </form>
-              </div><!--/.navbar-collapse -->
-            </div>
+    <div class="masthead clearfix">
+        <div class="nav-wrapper">
+          <!-- <h3 class="masthead-brand">XTask</h3> -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><h2>XTask</h2></a>
           </div>
+           <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" role="form">
+              <div class="form-group">
+                <input type="text" placeholder="Email" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="password" placeholder="Password" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+          </div><!--/.navbar-collapse -->
+        </div>
+      </div>
+
      <div class="site-wrapper">
-
       <div class="site-wrapper-inner">
-
         <div class="cover-container">
-         
-
-          
-
           <div class="inner cover">
             <h1 class="cover-heading">Plan Your Day.</h1>
             <p class="lead">XTask provides a simpler way to schedule your busy life.</p>
@@ -50,28 +45,42 @@
               <a href="#" class="btn btn-lg btn-default">Learn more</a>
             </p>
           </div>
-
+          <div class="col-md-3">
+          </div>
+           <form action="/schedules" method="post" class="task_form col-md-6">
+            <h3>Add Schedule</h3>
+            <div>
+              <!-- <label for="scheduleName">Schedule Name:</label> -->
+              <input id="scheduleName" type="text" name="scheduleName" class="form-control" placeholder="Schedule Name">
+            </div>
+            <div>
+              <!-- <label for="userName">User Name:</label> -->   
+                <input id="userName" type="text" name="userName" class="form-control" placeholder="User Name">  
+            </div>
+            <div>
+              <input type="submit" class="btn btn-default submit_button">
+            </div>
+          </form> 
+          <div class="col-md-3">
+          </div>
           <div class="mastfoot">
             <div class="inner">
               <p>XTask - Made by Krish and Connor</p>
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
 
       <div class="container">
-      
           <h2>Tasks</h2>
           <div>
               <% @schedules.each do |s| %>
-                  <p class="schedule-p"><a href="/schedules/<%= s.id %>"><%= s.username %> - <%= s.name %></a></p>
+                  <span class="black"><p class="schedule-p"><a href="/schedules/<%= s.id %>"><%= s.username %> - <%= s.name %></a></p></span>
               <% end %>
-          </div>    
-   
+          </div>
+
+            
       </div>
   
   
