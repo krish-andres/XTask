@@ -2,6 +2,9 @@ require 'sinatra'
 require 'sinatra/json'
 require "sinatra/reloader" if development?
 require 'pry-byebug'
+require 'bcrypt'
+
+enable :sessions
 
 # module XTask
 #   def self.db
@@ -9,9 +12,26 @@ require 'pry-byebug'
 #   end
 # end
 
+
+
 require_relative 'xtask.rb'
 
 set :bind, '0.0.0.0'
+
+helpers do
+
+  def login?
+    if session[:username].nil?
+      return false
+    else
+      return true
+    end
+  end
+
+  def username
+    return session[:username]
+  end
+end
 
 get '/' do
   @schedules = XTask::ScheduleRepo.new.find_all
@@ -59,6 +79,30 @@ post '/schedules/:id/tasks' do
   XTask::TaskRepo.new.create({name: @name, description: @description, type: @type, start_time: @start_time, end_time: @end_time, monday: @monday, tuesday: @tuesday, wednesday: @wednesday, thursday: @thursday, friday: @friday, saturday: @saturday, sunday: @sunday, schedule: @schedule})
   redirect to("schedules/#{@schedule.id}")
 end
+
+
+
+
+
+get '/signup' do
+  erb :signup
+end
+
+post '/signup' do
+  username = params[:username]
+  password_salt = BCrypt::Engine.generate_salt
+  password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
+end
+
+get '/signin' do
+
+
+end
+
+
+
+
+
 
 
 
