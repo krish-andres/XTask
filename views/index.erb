@@ -36,14 +36,12 @@
     <div class="jumbotron">
       <div class="container">
         <h1>XTask</h1>
-        <div >
+        <div>
           <ul>
-            <% @tasks.each do |t| %>
+            <% @schedules.each do |s| %>
               <li>
-                <%= t.name %> <br />
-                <%= t.description %>
-                (<%= t.monday %>
-                <%= t.start_time %>)
+                <%= s.name %> <br />
+                <%= s.username %>
               </li>
             <% end %>
           </ul>
@@ -56,23 +54,7 @@
       </footer>
     </div> <!-- /container -->
 
- <!--  <div class="Jumbotron">
-    <div class="container">
-      <h1>XTask</h1>
-      <div >
-        <ul>
-          <% @tasks.each do |t| %>
-            <li>
-              <%= t.name %> <br />
-              <%= t.description %>
-              (<%= t.monday %>
-              <%= t.start_time %>)
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>  
-  </div> -->  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Optional: Incorporate the Bootstrap JavaScript plugins -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
