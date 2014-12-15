@@ -8,84 +8,127 @@
 </head>
 <body>
   
-      <div class="container">
-        <h1>XTask</h1>
-        <div >
-          <ul>
-            <% @tasks.each do |t| %>
-              <li>
-                <%= t.name %> <br />
-                <%= t.description %> <br>
-                <%= t.type %> <br> 
-              </li>
-            <% end %>
-              <% if !@monday.empty? %>
-                <% @monday.each do |x| %>
-                  <li>
-                    <%= x.name %>
-                  </li>  
-                <% end %> 
-              <% end %>
+  <div class="container">
+    <h1>XTask</h1>
+    <h3><%= @schedule.username %> - <%= @schedule.name %></h3>
+    <div>
+      <ul>
+        <% @tasks.each do |t| %>
+          <li>
+            <%= t.name %> <br />
+            <%= t.description %> <br>
+            <%= t.type %> <br> 
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <div>
+      <h3>Monday</h3>
+      <ul>
+        <% @monday.each do |x| %>  
+          <li>
+            <strong><%= x.name %></strong><br />
+            <%= x.description %><br />
+            <%= x.type %><br />
+            <%= x.start_time %><br />
+            <%= x.end_time %><br />
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-              <% if !@tuesday.empty? %>
-              <% @tuesday.each do |x| %>
-                <li>
-                  <%= x.name %>
-                </li>  
-              <% end %> 
-              <% end %> 
+    <div>
+      <h3>Tuesday</h3>
+      <ul>
+        <% @tuesday.each do |x| %>  
+          <li>
+            <strong><%= x.name %></strong><br />
+            <%= x.description %><br />
+            <%= x.type %><br />
+            <%= x.start_time %><br />
+            <%= x.end_time %><br />
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-              <% if !@wednesday.empty? %>
-              <% @wednesday.each do |x| %>
-                <li>
-                  <%= x.name %>
-                </li>  
-              <% end %> 
-              <% end %>
+    <div>
+      <h3>Wednesday</h3>
+      <ul>
+        <% @wednesday.each do |x| %>  
+          <li>
+            <strong><%= x.name %></strong><br />
+            <%= x.description %><br />
+            <%= x.type %><br />
+            <%= x.start_time %><br />
+            <%= x.end_time %><br />
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-              <% if !@thursday.empty? %>
-              <% @thursday.each do |x| %>
-                <li>
-                  <%= x.name %>
-                </li>  
-              <% end %> 
-              <% end %>
+    <div>
+      <h3>Thursday</h3>
+      <ul>
+        <% @thursday.each do |x| %>  
+          <li>
+            <strong><%= x.name %></strong><br />
+            <%= x.description %><br />
+            <%= x.type %><br />
+            <%= x.start_time %><br />
+            <%= x.end_time %><br />
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-              <% if !@friday.empty? %>
-              <% @friday.each do |x| %>
-                <li>
-                  <%= x.name %>
-                </li>  
-              <% end %> 
-              <% end %>
+    <div>
+      <h3>Friday</h3>
+      <ul>
+        <% @friday.each do |x| %>  
+          <li>
+            <strong><%= x.name %></strong><br />
+            <%= x.description %><br />
+            <%= x.type %><br />
+            <%= x.start_time %><br />
+            <%= x.end_time %><br />
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-              <% if !@saturday.empty? %>
-              <% @saturday.each do |x| %>
-                <li>
-                  <%= x.name %>
-                </li>  
-              <% end %> 
-              <% end %>
+    <div>
+      <h3>Saturday</h3>
+      <ul>
+        <% @saturday.each do |x| %>  
+          <li>
+            <strong><%= x.name %></strong><br />
+            <%= x.description %><br />
+            <%= x.type %><br />
+            <%= x.start_time %><br />
+            <%= x.end_time %><br />
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-              <% if !@sunday.empty? %>
-              <% @sunday.each do |x| %>
-                <li>
-                  <%= x.name %>
-                </li>  
-              <% end %> 
-              <% end %>
-            
-          </ul>
-          <ul>
-            
-              <li>
-                <%= @schedule.name %>
-                <%= @schedule.username %>
-              </li>
-            
-          </ul>
-        </div>
-      </div>
+    <div>
+      <h3>Sunday</h3>
+      <ul>
+        <% @sunday.each do |x| %>  
+          <li>
+            <strong><%= x.name %></strong><br />
+            <%= x.description %><br />
+            <%= x.type %><br />
+            <%= x.start_time %><br />
+            <%= x.end_time %><br />
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
   
 
     
