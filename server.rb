@@ -22,7 +22,7 @@ post '/schedules' do
   puts params
   @name = params[:scheduleName]
   @username = params[:userName]
-  binding.pry
+  
   @schedule = XTask::ScheduleRepo.new.create({name: @name, username: @username})
   redirect to("/schedules/#{@schedule.id}")
 end
@@ -30,6 +30,13 @@ end
 get '/schedules/:id' do
   @schedule = XTask::ScheduleRepo.new.find(params[:id])
   @tasks = XTask::TaskRepo.new.find_all(schedule: @schedule)
+  @monday = XTask::TaskRepo.new.find_by(schedule: @schedule, monday: true)
+  @tuesday = XTask::TaskRepo.new.find_by(schedule: @schedule, tuesday: true)
+  @wednesday = XTask::TaskRepo.new.find_by(schedule: @schedule, wednesday: true)
+  @thursday = XTask::TaskRepo.new.find_by(schedule: @schedule, thursday: true)
+  @friday = XTask::TaskRepo.new.find_by(schedule: @schedule, friday: true)
+  @saturday = XTask::TaskRepo.new.find_by(schedule: @schedule, saturday: true)
+  @sunday = XTask::TaskRepo.new.find_by(schedule: @schedule, sunday: true)
 
   erb :schedule
 end

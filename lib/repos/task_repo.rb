@@ -144,6 +144,7 @@ module XTask
         SQL
         results = @db.exec(command + spec, [schedule_id, sunday])             
       end
+    
       results.map { |result| build_task(result) }
     end
 
