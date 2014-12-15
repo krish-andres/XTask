@@ -10,14 +10,12 @@
   
   <div class="container">
     <h1>XTask</h1>
-    <h3><%= @schedule.username %> - <%= @schedule.name %></h3>
+    <h3><%= @schedule.name %> - Tasks</h3>
     <div>
       <ul>
         <% @tasks.each do |t| %>
           <li>
-            <%= t.name %> <br />
-            <%= t.description %> <br>
-            <%= t.type %> <br> 
+            <strong><%= t.name %></strong>
           </li>
         <% end %>
       </ul>
