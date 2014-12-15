@@ -45,7 +45,7 @@ post '/schedules/:id/tasks' do
   puts params
   @name = params[:taskName]
   @description = params[:taskDesc]
-  @type = params[:type]
+  @type = params[:taskType]
   @start_time = params[:taskStart]
   @end_time = params[:taskEnd]
   @monday = params[:monday] 
@@ -57,7 +57,7 @@ post '/schedules/:id/tasks' do
   @sunday = params[:sunday]
   @schedule = XTask::ScheduleRepo.new.find(params[:scheduleId])
   XTask::TaskRepo.new.create({name: @name, description: @description, type: @type, start_time: @start_time, end_time: @end_time, monday: @monday, tuesday: @tuesday, wednesday: @wednesday, thursday: @thursday, friday: @friday, saturday: @saturday, sunday: @sunday, schedule: @schedule})
-  redirect_to ("schedules/#{@schedule.id}")
+  redirect to("schedules/#{@schedule.id}")
 end
 
 
