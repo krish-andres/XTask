@@ -97,7 +97,7 @@
     <div class="container-content">
       <div class="container">
         <div class="col-md-3">
-          <span class="task-title"><h3>Monday</h3>
+          <span class="task-title"><h3 class="day">Monday</h3>
           <ul>
             <% @monday.each do |x| %>
               <a href="/schedules/<%=@schedule.id%>/tasks/<%=x.id%>/edit"><li class="emp_space-2">
@@ -112,7 +112,7 @@
 
         <div>
           <div class="col-md-3">
-            <h3>Tuesday</h3>
+            <h3 class="day">Tuesday</h3>
             <ul>
               <% @tuesday.each do |x| %>  
                 <a href="/schedules/<%=@schedule.id%>/tasks/<%=x.id%>/edit"><li class="emp_space-2">
@@ -128,7 +128,7 @@
           </div>
 
           <div class="col-md-3">
-            <h3>Wednesday</h3>
+            <h3 class="day">Wednesday</h3>
             <ul>
               <% @wednesday.each do |x| %>  
                 <a href="/schedules/<%=@schedule.id%>/tasks/<%=x.id%>/edit"><li class="emp_space-2">
@@ -142,7 +142,7 @@
           </div>
 
           <div class="col-md-3">
-            <h3>Thursday</h3>
+            <h3 class="day">Thursday</h3>
             <ul>
               <% @thursday.each do |x| %>  
                 <a href="/schedules/<%=@schedule.id%>/tasks/<%=x.id%>/edit"><li class="emp_space-2">
@@ -160,7 +160,7 @@
         </div>
 
         <div class="col-md-4">
-          <h3>Friday</h3>
+          <h3 class="day">Friday</h3>
           <ul>
             <% @friday.each do |x| %>  
               <a href="/schedules/<%=@schedule.id%>/tasks/<%=x.id%>/edit"><li class="emp_space-2">
@@ -174,7 +174,7 @@
         </div>
         
         <div class="col-md-4">
-          <h3>Saturday</h3>
+          <h3 class="day">Saturday</h3>
           <ul>
             <% @saturday.each do |x| %>  
               <a href="/schedules/<%=@schedule.id%>/tasks/<%=x.id%>/edit"><li class="emp_space-2">
@@ -189,7 +189,7 @@
          
 
         <div class="col-md-4">
-          <h3>Sunday</h3>
+          <h3 class="day">Sunday</h3>
           <ul>
             <% @sunday.each do |x| %>  
               <a href="/schedules/<%=@schedule.id%>/tasks/<%=x.id%>/edit"><li class="emp_space-2">
