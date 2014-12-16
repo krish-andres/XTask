@@ -30,9 +30,6 @@ p:hover {
   color:#333;
   font-size:1.2em;
 }
-.black {
-  color: #333;
-}
 .submit_button{
   font-weight:600;
 }
@@ -51,8 +48,19 @@ p:hover {
 .task-constrictor {
   width: 75%;
   margin:0 auto;
-  
 }
+.task-constrictor ul {
+  padding:0;
+}
+.task-constrictor h3 {
+  width:70%;
+  padding-bottom:5px;
+  border-bottom: 3px solid black;
+  margin: 0 auto;
+  margin-bottom:10px;
+}
+
+
 .day_check {
   margin-top: 15px;
   font-size:1.2em;
@@ -65,14 +73,14 @@ p:hover {
 .emp_space-5 {
   margin-bottom:50px;
 }
+.emp_space-3 {
+  margin-bottom:30px;
+}
 .emp_space-2 {
   margin-bottom:20px;
 }
 .emp_space-1 {
   margin-bottom:10px;
-}
-.emp_space-0 {
-  margin-bottom:0px;
 }
 .user-form{
   margin-top:-10vh;
@@ -81,4 +89,10 @@ p:hover {
 .user-form input {
   margin-bottom:10px;
 }
+.bold {
+  font-size:1.25em;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
 

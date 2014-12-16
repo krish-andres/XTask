@@ -7,9 +7,7 @@ require 'bcrypt'
 enable :sessions
 
 # module XTask
-#   def self.db
-#     @db ||= PG.connect(dbname: 'xtask-db')
-#   end
+
 # end
 
 require_relative 'xtask.rb'
@@ -54,7 +52,9 @@ end
 post '/schedules' do
   puts params
   @name = params[:scheduleName]
+
   @user = XTask::UserRepo.new.find(params[:userName]).first
+
   
   @schedule = XTask::ScheduleRepo.new.create({name: @name, user: @user})
   redirect to("/schedules/#{@schedule.id}")
