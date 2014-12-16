@@ -31,11 +31,11 @@
   <div class="site-wrapper-inner">
   <div class="task-constrictor">
 
-    <div class="container emp_space-5 space_top-3">
+    <div class="container emp_space-5 space_top-3 container-form">
       <h2 class="emp_space-3"><%= @schedule.name %></h2>
 
       <form action="/schedules/<%= @schedule.id %>/tasks" method="post">
-        <h4>Add Task</h4>
+        <h4 class="task-title">Add Task</h4>
         <div class="col-md-6">
           <input id="taskName" type="text" name="taskName" class="form-control" placeholder="Name">
         </div>
@@ -213,6 +213,6 @@
    </div> 
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-   
+    <script src="/js/main.js"></script>
 </body>
 </html>
