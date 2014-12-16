@@ -4,182 +4,211 @@
   <title>XTask</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="/css/cover.css">
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-  <div class="container">
-    <h1>XTask</h1>
-    <h3><%= @schedule.name %> - Tasks</h3>
-    <div>
-      <ul>
-        <% @tasks.each do |t| %>
-          <li>
-            <strong><%= t.name %></strong>
-          </li>
-        <% end %>
-      </ul>
+  
+    <div class="masthead clearfix">
+      <div class="nav-wrapper">      
+          <a class="navbar-brand" href="/"><h2>XTask</h2></a>
+         <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form">
+              <div class="form-group">
+                <input type="text" placeholder="Username" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="password" placeholder="Password" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div> 
+      </div>       
     </div>
-
-    <form action="/schedules/<%= @schedule.id %>/tasks" method="post">
-      <h3>Add Task</h3>
+  <div class="task-wrapper"> 
+  <div class="site-wrapper">
+  <div class="site-wrapper-inner">
+  <div class="task-constrictor">
+      <h3><%= @schedule.name %> - Tasks</h3>
       <div>
-        <label for="taskName">Name:</label>
-        <input id="taskName" type="text" name="taskName">
+        <ul>
+          <% @tasks.each do |t| %>
+            <li>
+              <strong><%= t.name %></strong>
+            </li>
+          <% end %>
+        </ul>
       </div>
-      <div>
-        <label for="taskDesc">Description:</label>
-        <input id="taskDesc" type="text" name="taskDesc">
-      </div>
-      <div>
-        <label for="taskType">Type:</label>
-        <select name="taskType" id="taskType">
-          <option value="School">School</option>
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
-          <option value="Social">Social</option>
-          <option value="Housekeeping">Housekeeping</option>
-          <option value="Other" selected="selected">Other</option>
-        </select>
-      </div>
-      <div>
-        <label for="taskStart">Start Time:</label>
-        <input id="taskStart" type="time" name="taskStart">
-      </div>
-      <div>
-        <label for="taskEnd">End Time:</label>
-        <input id="taskEnd" type="time" name="taskEnd">
-      </div>
-      <div>
-        <label>Day(s)</label><br>
-        <input type="hidden" name="monday" value=false>
-        <input type="checkbox" name="monday" value=true>Monday <br>
-        <input type="hidden" name="tuesday" value=false>
-        <input type="checkbox" name="tuesday" value=true>Tuesday <br>
-        <input type="hidden" name="wednesday" value=false>
-        <input type="checkbox" name="wednesday" value=true>Wednesday <br>
-        <input type="hidden" name="thursday" value=false>
-        <input type="checkbox" name="thursday" value=true>Thursday <br>
-        <input type="hidden" name="friday" value=false>
-        <input type="checkbox" name="friday" value=true>Friday <br>
-        <input type="hidden" name="saturday" value=false>
-        <input type="checkbox" name="saturday" value=true>Saturday <br>
-        <input type="hidden" name="sunday" value=false>
-        <input type="checkbox" name="sunday" value=true>Sunday <br>
-      </div>
-      <div>
-        <input type="hidden" name="scheduleId" value="<%= @schedule.id %>">
-      </div>
-      <div>
-        <input type="submit">
-      </div>
-    </form>
-    
-    <div>
-      <h3>Monday</h3>
-      <ul>
-        <% @monday.each do |x| %>  
-          <li>
-            <strong><%= x.name %></strong><br />
-            <%= x.description %><br />
-            <%= x.type %><br />
-            <%= x.start_time %><br />
-            <%= x.end_time %><br />
-          </li>
-        <% end %>
-      </ul>
-    </div>
 
-    <div>
-      <h3>Tuesday</h3>
-      <ul>
-        <% @tuesday.each do |x| %>  
-          <li>
-            <strong><%= x.name %></strong><br />
-            <%= x.description %><br />
-            <%= x.type %><br />
-            <%= x.start_time %><br />
-            <%= x.end_time %><br />
-          </li>
-        <% end %>
-      </ul>
-    </div>
+      <form action="/schedules/<%= @schedule.id %>/tasks" method="post">
+        <h3>Add Task</h3>
+        <div class="col-md-6">
+          <input id="taskName" type="text" name="taskName" class="form-control" placeholder="Name">
+        </div>
+       
+        <div class="col-md-6 form-group">
+          <input id="taskDesc" type="text" name="taskDesc" class="form-control" placeholder="Description">
+        </div>
+        <div class="col-md-4">
+          <label for="taskType">Select Type:</label> 
+          <select name="taskType" id="taskType" class="form-control">
+            <option value="School">School</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Social">Social</option>
+            <option value="Housekeeping">Housekeeping</option>
+            <option value="Other" selected="selected">Other</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="taskStart">Start Time:</label>
+          <input id="taskStart" type="time" name="taskStart" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <label for="taskEnd">End Time:</label>
+          <input id="taskEnd" type="time" name="taskEnd" class="form-control">
+        </div>
+        <div class="col-md-12 day_check">
+          <label>Day(s)</label>
+          <input type="hidden" name="monday" value=false>
+          <input type="checkbox" name="monday" value=true>Monday 
+          <input type="hidden" name="tuesday" value=false>
+          <input type="checkbox" name="tuesday" value=true>Tuesday 
+          <input type="hidden" name="wednesday" value=false> 
+          <input type="checkbox" name="wednesday" value=true>Wednesday 
+          <input type="hidden" name="thursday" value=false>
+          <input type="checkbox" name="thursday" value=true>Thursday 
+          <input type="hidden" name="friday" value=false>
+          <input type="checkbox" name="friday" value=true>Friday 
+          <input type="hidden" name="saturday" value=false>
+          <input type="checkbox" name="saturday" value=true>Saturday 
+          <input type="hidden" name="sunday" value=false>
+          <input type="checkbox" name="sunday" value=true>Sunday 
+        </div>
+        <div>
+          <input type="hidden" name="scheduleId" value="<%= @schedule.id %>">
+        </div>
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-2">
+          <input type="submit" class="form-control btn-primary">
+        </div>
+        <div class="col-md-5">
+        </div>
+      </form>
+      
+      <div class="col-md-12 emp_space">
+      </div>
 
-    <div>
-      <h3>Wednesday</h3>
-      <ul>
-        <% @wednesday.each do |x| %>  
-          <li>
-            <strong><%= x.name %></strong><br />
-            <%= x.description %><br />
-            <%= x.type %><br />
-            <%= x.start_time %><br />
-            <%= x.end_time %><br />
-          </li>
-        <% end %>
-      </ul>
-    </div>
+      <div class="col-md-3">
+        <h3>Monday</h3>
+        <ul>
+          <% @monday.each do |x| %>  
+            <li>
+              <strong><%= x.name %></strong><br />
+              <%= x.description %><br />
+              <%= x.type %><br />
+              <%= x.start_time %><br />
+              <%= x.end_time %><br />
+            </li>
+          <% end %>
+        </ul>
+      </div>
 
-    <div>
-      <h3>Thursday</h3>
-      <ul>
-        <% @thursday.each do |x| %>  
-          <li>
-            <strong><%= x.name %></strong><br />
-            <%= x.description %><br />
-            <%= x.type %><br />
-            <%= x.start_time %><br />
-            <%= x.end_time %><br />
-          </li>
-        <% end %>
-      </ul>
-    </div>
+      <div class="col-md-3">
+        <h3>Tuesday</h3>
+        <ul>
+          <% @tuesday.each do |x| %>  
+            <li>
+              <strong><%= x.name %></strong><br />
+              <%= x.description %><br />
+              <%= x.type %><br />
+              <%= x.start_time %><br />
+              <%= x.end_time %><br />
+            </li>
+          <% end %>
+        </ul>
+      </div>
 
-    <div>
-      <h3>Friday</h3>
-      <ul>
-        <% @friday.each do |x| %>  
-          <li>
-            <strong><%= x.name %></strong><br />
-            <%= x.description %><br />
-            <%= x.type %><br />
-            <%= x.start_time %><br />
-            <%= x.end_time %><br />
-          </li>
-        <% end %>
-      </ul>
-    </div>
+      <div class="col-md-3">
+        <h3>Wednesday</h3>
+        <ul>
+          <% @wednesday.each do |x| %>  
+            <li>
+              <strong><%= x.name %></strong><br />
+              <%= x.description %><br />
+              <%= x.type %><br />
+              <%= x.start_time %><br />
+              <%= x.end_time %><br />
+            </li>
+          <% end %>
+        </ul>
+      </div>
 
-    <div>
-      <h3>Saturday</h3>
-      <ul>
-        <% @saturday.each do |x| %>  
-          <li>
-            <strong><%= x.name %></strong><br />
-            <%= x.description %><br />
-            <%= x.type %><br />
-            <%= x.start_time %><br />
-            <%= x.end_time %><br />
-          </li>
-        <% end %>
-      </ul>
-    </div>
+      <div class="col-md-3">
+        <h3>Thursday</h3>
+        <ul>
+          <% @thursday.each do |x| %>  
+            <li>
+              <strong><%= x.name %></strong><br />
+              <%= x.description %><br />
+              <%= x.type %><br />
+              <%= x.start_time %><br />
+              <%= x.end_time %><br />
+            </li>
+          <% end %>
+        </ul>
+      </div>
 
-    <div>
-      <h3>Sunday</h3>
-      <ul>
-        <% @sunday.each do |x| %>  
-          <li>
-            <strong><%= x.name %></strong><br />
-            <%= x.description %><br />
-            <%= x.type %><br />
-            <%= x.start_time %><br />
-            <%= x.end_time %><br />
-          </li>
-        <% end %>
-      </ul>
-    </div>
+      <div class="col-md-4">
+        <h3>Friday</h3>
+        <ul>
+          <% @friday.each do |x| %>  
+            <li>
+              <strong><%= x.name %></strong><br />
+              <%= x.description %><br />
+              <%= x.type %><br />
+              <%= x.start_time %><br />
+              <%= x.end_time %><br />
+            </li>
+          <% end %>
+        </ul>
+      </div>
 
-  </div>
+      <div class="col-md-4">
+        <h3>Saturday</h3>
+        <ul>
+          <% @saturday.each do |x| %>  
+            <li>
+              <strong><%= x.name %></strong><br />
+              <%= x.description %><br />
+              <%= x.type %><br />
+              <%= x.start_time %><br />
+              <%= x.end_time %><br />
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <h3>Sunday</h3>
+        <ul>
+          <% @sunday.each do |x| %>  
+            <li>
+              <strong><%= x.name %></strong><br />
+              <%= x.description %><br />
+              <%= x.type %><br />
+              <%= x.start_time %><br />
+              <%= x.end_time %><br />
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>  
+    </div>  
+    </div>  
+   </div> 
+  
   
 
     
