@@ -62,5 +62,30 @@ module XTask
       results.map { |result| build_user(result) }
     end
 
+    def find_by(params)
+      username = params[:username]
+      email = params[:email]
+      command = <<-SQL
+        SELECT * FROM users
+      SQL
+      if username
+        spec = <<-SQL
+          WHERE username=$1;
+        SQL
+        results = @db.exec(command+spec, [username])
+      elsif email
+        spec = <<-SQL
+          WHERE email=$1;
+        SQL
+        results = @db.exec(command+spec, [email])
+      end
+      results.map { |result| build_user(result) }
+    end
+
+
+
+
+
+
   end
 end

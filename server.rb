@@ -12,15 +12,13 @@ enable :sessions
 #   end
 # end
 
-
-
 require_relative 'xtask.rb'
 
 set :bind, '0.0.0.0'
 
 helpers do
 
-  def login?
+  def signed_in?
     if session[:username].nil?
       return false
     else
@@ -34,6 +32,7 @@ helpers do
 end
 
 get '/' do
+
   @schedules = XTask::ScheduleRepo.new.find_all
   erb :index
 end
@@ -89,18 +88,32 @@ get '/signup' do
 end
 
 post '/signup' do
-  username = params[:username]
-  password_salt = BCrypt::Engine.generate_salt
-  password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
+  puts params
+  @username = params[:username]
+  @email = params[:email]
+  @password_salt = BCrypt::Engine.generate_salt
+  @password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
+
+
+  XTask::UserRepo.new.create({username: @username, email: @email, password: @password_hash})
+
+  session[:username] = params[:username]
+  redirect to('/')
 end
 
 get '/signin' do
+  erb :signin
+end
 
+post '/signin' do
+  
 
 end
 
-
-
+get 'signout' do
+  session[:username] = nil
+  redirect to('/')
+end
 
 
 
