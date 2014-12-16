@@ -30,18 +30,13 @@ helpers do
 end
 
 get '/' do
-
-  if signed_in?
-    redirect to('/dashboard')
-  end
+  redirect to('/dashboard') if signed_in?
 
   erb :index
 end
 
 get '/dashboard' do
-  unless signed_in?
-    redirect to('/')
-  end
+  redirect to('/') unless signed_in?
 
   @user = XTask::UserRepo.new.find_by(username: username).first
   @schedules = XTask::ScheduleRepo.new.find_by(user: @user)
@@ -53,7 +48,7 @@ post '/schedules' do
   puts params
   @name = params[:scheduleName]
 
-  @user = XTask::UserRepo.new.find(params[:userName]).first
+  @user = XTask::UserRepo.new.find(params[:userName])
 
   
   @schedule = XTask::ScheduleRepo.new.create({name: @name, user: @user})
@@ -61,6 +56,8 @@ post '/schedules' do
 end
 
 get '/schedules/:id' do
+  redirect to('/') unless signed_in?
+
   @schedule = XTask::ScheduleRepo.new.find(params[:id])
   @tasks = XTask::TaskRepo.new.find_all(schedule: @schedule)
   @monday = XTask::TaskRepo.new.find_by(schedule: @schedule, monday: true)
@@ -93,12 +90,6 @@ post '/schedules/:id/tasks' do
   redirect to("schedules/#{@schedule.id}")
 end
 
-
-
-get '/signup' do
-  erb :signup
-end
-
 post '/signup' do
   puts params
   @username = params[:username]
@@ -110,10 +101,6 @@ post '/signup' do
   session[:username] = params[:username]
   redirect to('/dashboard')
 end
-
-# get '/signin' do
-#   erb :signin
-# end
 
 post '/signin' do
   @username = params[:username]
@@ -127,7 +114,7 @@ post '/signin' do
 
 end
 
-get 'signout' do
+get '/signout' do
   session[:username] = nil
   redirect to('/')
 end
