@@ -14,6 +14,7 @@
           <a class="navbar-brand" href="/"><h2>XTask</h2></a>
          <div id="navbar" class="navbar-collapse collapse">
           <form action="/signout" method="get" class="navbar-form navbar-right" role="form">
+              <a href="/dashboard" class="account">Welcome, <%= username %></a>
               <button type="submit" class="btn btn-success">Sign Out</button>
           </form>
         </div> 
@@ -82,12 +83,18 @@
           <input type="hidden" name="scheduleId" value="<%= @schedule_id %>">
         </div>
           
-        <div class="col-md-5">
+        <div class="col-md-4">
         </div>
+        <div class="col-md-2">
+          <form action="/schedules/<%=@schedule_id%>/tasks/<%=@task.id%>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="form-control btn-danger">Delete</button>
+          </form>
+        </div>  
         <div class="col-md-2">
           <input type="submit" class="form-control btn-primary" value="Update Task">
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
         </div>
       </form>
      </div>  
@@ -96,10 +103,7 @@
  
       </div> 
     
-      <form action="/schedules/<%=@schedule_id%>/tasks/<%=@task.id%>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
+      
     </div>  
     </div>  
     </div>  
