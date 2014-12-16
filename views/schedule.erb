@@ -9,7 +9,7 @@
 </head>
 <body>
   
-    <div class="masthead clearfix">
+    <div class="masthead clearfix schedule-top">
       <div class="nav-wrapper">      
           <a class="navbar-brand" href="/"><h2>XTask</h2></a>
          <div id="navbar" class="navbar-collapse collapse">
@@ -25,10 +25,13 @@
         </div> 
       </div>       
     </div>
-  <div class="task-wrapper"> 
+
+  <div class="task-wrapper">
   <div class="site-wrapper">
   <div class="site-wrapper-inner">
   <div class="task-constrictor">
+
+
       <h3><%= @schedule.name %> - Tasks</h3>
       <div>
         <ul>
@@ -45,10 +48,13 @@
         <div class="col-md-6">
           <input id="taskName" type="text" name="taskName" class="form-control" placeholder="Name">
         </div>
-       
         <div class="col-md-6 form-group">
           <input id="taskDesc" type="text" name="taskDesc" class="form-control" placeholder="Description">
         </div>
+
+        <div class="col-md-12 emp_space-1">
+        </div>
+
         <div class="col-md-4">
           <label for="taskType">Select Type:</label> 
           <select name="taskType" id="taskType" class="form-control">
@@ -68,6 +74,7 @@
           <label for="taskEnd">End Time:</label>
           <input id="taskEnd" type="time" name="taskEnd" class="form-control">
         </div>
+
         <div class="col-md-12 day_check">
           <label>Day(s)</label>
           <input type="hidden" name="monday" value=false>
@@ -88,6 +95,7 @@
         <div>
           <input type="hidden" name="scheduleId" value="<%= @schedule.id %>">
         </div>
+          
         <div class="col-md-5">
         </div>
         <div class="col-md-2">
@@ -97,32 +105,21 @@
         </div>
       </form>
       
-      <div class="col-md-12 emp_space">
+      <div class="col-md-12 emp_space-5">
       </div>
 
-    <table>
       <div class="col-md-3">
-        
-        <th>Monday</th>
-        <% @monday.each do |x| %> 
-          <tr> 
-              <th><%= x.name %></th>
-          </tr>
-          <tr>    
-              <td><%= x.description %></td>
-          </tr>
-          <tr>    
-              <td><%= x.type %></td>
-          </tr>
-          <tr>    
-              <td><%= x.start_time %></td>
-          </tr>
-          <tr>    
-              <td><%= x.end_time %></td>
-          </tr>    
-          <% end %>
-        
-        </table>
+        <h3>Monday</h3>
+        <ul>
+        <% @monday.each do |x| %>
+          <li>
+          <strong><%= x.name %></strong><br>
+          <%= x.start_time %> - <%= x.end_time %><br>
+          <%= x.description %><br>
+          <%= x.type %><br>          
+          </li>
+        <% end %>
+        </ul>
       </div>
 
       <div class="col-md-3">
@@ -131,10 +128,11 @@
           <% @tuesday.each do |x| %>  
             <li>
               <strong><%= x.name %></strong><br />
+              <%= x.start_time %> - <%= x.end_time %><br />
               <%= x.description %><br />
               <%= x.type %><br />
-              <%= x.start_time %><br />
-              <%= x.end_time %><br />
+              <br />
+              
             </li>
           <% end %>
         </ul>
@@ -146,10 +144,9 @@
           <% @wednesday.each do |x| %>  
             <li>
               <strong><%= x.name %></strong><br />
+              <%= x.start_time %> - <%= x.end_time %><br />
               <%= x.description %><br />
-              <%= x.type %><br />
-              <%= x.start_time %><br />
-              <%= x.end_time %><br />
+              <%= x.type %><br>
             </li>
           <% end %>
         </ul>
@@ -161,13 +158,15 @@
           <% @thursday.each do |x| %>  
             <li>
               <strong><%= x.name %></strong><br />
+              <%= x.start_time %> - <%= x.end_time %><br />
               <%= x.description %><br />
-              <%= x.type %><br />
-              <%= x.start_time %><br />
-              <%= x.end_time %><br />
+              <%= x.type %><br />                            
             </li>
           <% end %>
         </ul>
+      </div>
+
+      <div class="emp_space-2 col-md-12">
       </div>
 
       <div class="col-md-4">
@@ -176,10 +175,9 @@
           <% @friday.each do |x| %>  
             <li>
               <strong><%= x.name %></strong><br />
+              <%= x.start_time %> - <%= x.end_time %><br>
               <%= x.description %><br />
-              <%= x.type %><br />
-              <%= x.start_time %><br />
-              <%= x.end_time %><br />
+              <%= x.type %><br>              
             </li>
           <% end %>
         </ul>
@@ -191,10 +189,9 @@
           <% @saturday.each do |x| %>  
             <li>
               <strong><%= x.name %></strong><br />
+              <%= x.start_time %> - <%= x.end_time %><br>
               <%= x.description %><br />
-              <%= x.type %><br />
-              <%= x.start_time %><br />
-              <%= x.end_time %><br />
+              <%= x.type %>
             </li>
           <% end %>
         </ul>
@@ -206,35 +203,14 @@
           <% @sunday.each do |x| %>  
             <li>
               <strong><%= x.name %></strong><br />
+              <%= x.start_time %> - <%= x.end_time %><br />
               <%= x.description %><br />
-              <%= x.type %><br />
-              <%= x.start_time %><br />
-              <%= x.end_time %><br />
+              <%= x.type %>             
             </li>
           <% end %>
         </ul>
       </div>
-      <table>
-        <th>Monday</th>
-        <% @sunday.each do |x| %> 
-          <tr> 
-              <th><%= x.name %></th>
-          </tr>
-          <tr>    
-              <td><%= x.description %></td>
-          </tr>
-          <tr>    
-              <td><%= x.type %></td>
-          </tr>
-          <tr>    
-              <td><%= x.start_time %></td>
-          </tr>
-          <tr>    
-              <td><%= x.end_time %></td>
-          </tr>    
-          <% end %>
-        
-      </table>
+    
     </div>  
     </div>  
     </div>  

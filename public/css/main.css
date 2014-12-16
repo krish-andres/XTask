@@ -1,3 +1,6 @@
+ul {
+  list-style:none;
+}
 .navbar-brand{
   color:white;
   margin-top:-25px;
@@ -11,8 +14,8 @@ p:hover {
   width:100%;
   color:white;
   padding:20px;
-  padding-top:10px;
-  border-radius:5px;
+  padding-top:5px;
+  border-radius:7px;
 }
 .masthead{
   background-color: black;
@@ -42,11 +45,13 @@ p:hover {
 }
 .task-wrapper {
   position: absolute;
-  top:8vh;
+  top:7vh;
+
 }
 .task-constrictor {
   width: 75%;
   margin:0 auto;
+  
 }
 .day_check {
   margin-top: 15px;
@@ -57,8 +62,17 @@ p:hover {
   margin-left:15px;
   margin-right:2px;
 }
-.emp_space {
+.emp_space-5 {
   margin-bottom:50px;
+}
+.emp_space-2 {
+  margin-bottom:20px;
+}
+.emp_space-1 {
+  margin-bottom:10px;
+}
+.emp_space-0 {
+  margin-bottom:0px;
 }
 .user-form{
   margin-top:-10vh;
@@ -67,3 +81,4 @@ p:hover {
 .user-form input {
   margin-bottom:10px;
 }
+

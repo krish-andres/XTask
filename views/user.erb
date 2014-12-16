@@ -48,10 +48,12 @@
                 <!-- <label for="scheduleName">Schedule Name:</label> -->
                 <input id="scheduleName" type="text" name="scheduleName" class="form-control" placeholder="Schedule Name">
               </div>
-              <div>
-                <!-- <label for="userName">User Name:</label> -->   
-                  <input id="userName" type="text" name="userName" class="form-control" placeholder="User Name">  
-              </div>
+              
+                <div>
+                  <!-- <label for="userName">User Name:</label> -->   
+                    <input id="userName" type="hidden" name="userName" value="<%= user.id %>" class="form-control" placeholder="User Name">  
+                </div>
+
               <div>
                 <input type="submit" class="btn btn-default submit_button">
               </div>
@@ -66,7 +68,7 @@
               <h2>Tasks</h2>
               <div>
                   <% @schedules.each do |s| %>
-                      <span class="black"><p class="schedule-p"><a href="/schedules/<%= s.id %>"><%= s.user.username %> - <%= s.name %></a></p></span>
+                      <span class="black"><p class="schedule-p"><a href="/schedules/<%= s.id %>"><%= s.name %></a></p></span>
                   <% end %>
               </div>
             </div>

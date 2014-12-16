@@ -34,7 +34,7 @@ end
 get '/' do
 
   @schedules = XTask::ScheduleRepo.new.find_all
-  erb :index
+  erb :user
 end
 
 post '/schedules' do
