@@ -32,17 +32,26 @@ helpers do
 end
 
 get '/' do
+  erb :index
+end
 
-  @schedules = XTask::ScheduleRepo.new.find_all
+get '/dashboard' do
+  unless signed_in?
+    redirect to('/')
+  end
+
+  @user = XTask::UserRepo.new.find_by(username: username)
+  @schedules = XTask::ScheduleRepo.new.find_by(user: @user)
   erb :user
+
 end
 
 post '/schedules' do
   puts params
   @name = params[:scheduleName]
-  @username = params[:userName]
+  @user = XTask::UserRepo.find(params[:userName])
   
-  @schedule = XTask::ScheduleRepo.new.create({name: @name, username: @username})
+  @schedule = XTask::ScheduleRepo.new.create({name: @name, user: @user})
   redirect to("/schedules/#{@schedule.id}")
 end
 
