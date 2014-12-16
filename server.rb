@@ -90,12 +90,11 @@ end
 post '/signup' do
   puts params
   @username = params[:username]
-  @email = params[:email]
   @password_salt = BCrypt::Engine.generate_salt
   @password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
 
 
-  XTask::UserRepo.new.create({username: @username, email: @email, password: @password_hash})
+  XTask::UserRepo.new.create({username: @username, password: @password_hash})
 
   session[:username] = params[:username]
   redirect to('/')
@@ -106,7 +105,7 @@ get '/signin' do
 end
 
 post '/signin' do
-  
+
 
 end
 

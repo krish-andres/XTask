@@ -6,7 +6,6 @@ module XTask
         CREATE TABLE IF NOT EXISTS users(
           id SERIAL PRIMARY KEY,
           username TEXT, 
-          email TEXT, 
           password TEXT
         );
       SQL
@@ -23,26 +22,23 @@ module XTask
     def build_user(params)
       id = params['id']
       username = params['username']
-      email = params['email']
       password = params['password']
       XTask::User.new({
         id: id, 
         username: username, 
-        email: email, 
         password: password
       })
     end
 
     def create(params)
       username = params[:username]
-      email = params[:email]
       password = params[:password]
       command = <<-SQL
-        INSERT INTO users(username, email, password)
-        VALUES ($1,$2,$3)
+        INSERT INTO users(username, password)
+        VALUES ($1,$2)
         RETURNING *;
       SQL
-      result = @db.exec(command, [username, email, password])
+      result = @db.exec(command, [username, password])
       build_user(result.first)
     end
 
@@ -64,28 +60,12 @@ module XTask
 
     def find_by(params)
       username = params[:username]
-      email = params[:email]
       command = <<-SQL
-        SELECT * FROM users
+        SELECT * FROM users WHERE username=$1;
       SQL
-      if username
-        spec = <<-SQL
-          WHERE username=$1;
-        SQL
-        results = @db.exec(command+spec, [username])
-      elsif email
-        spec = <<-SQL
-          WHERE email=$1;
-        SQL
-        results = @db.exec(command+spec, [email])
-      end
+      results = @db.exec(command, [username])
       results.map { |result| build_user(result) }
     end
-
-
-
-
-
 
   end
 end
