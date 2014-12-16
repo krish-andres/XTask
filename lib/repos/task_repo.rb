@@ -176,5 +176,29 @@ module XTask
       result = @db.exec(command, [id, schedule_id])
     end
 
+    def update(params)
+      id = params[:id]
+      schedule_id = params[:schedule].id 
+      name = params[:name]
+      description = params[:description]
+      type = params[:type]
+      start_time = params[:start_time]
+      end_time = params[:end_time]
+      monday = params[:monday]
+      tuesday = params[:tuesday]
+      wednesday = params[:wednesday]
+      thursday = params[:thursday]
+      friday = params[:friday]
+      saturday = params[:saturday]
+      sunday = params[:sunday]
+      command = <<-SQL
+        UPDATE tasks 
+        SET name=$3, description=$4, type=$5, start_time=$6, end_time=$7, monday=$8, tuesday=$9, wednesday=$10, thursday=$11, friday=$12, saturday=$13, sunday=$14
+        WHERE tasks.id=$1 AND schedule_id=$2
+        RETURNING *;
+      SQL
+      result = @db.exec(command, [id, schedule_id, name, description, type, start_time, end_time, monday, tuesday, wednesday, thursday, friday, saturday, sunday])
+      build_task(result.first)
+    end
   end
 end

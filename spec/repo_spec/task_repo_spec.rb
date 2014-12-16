@@ -84,10 +84,14 @@ describe XTask::TaskRepo do
       expect(two_tasks.length).to eq(1)
     end
   end
+
+  describe "update" do
+    it "should update the task" do
+      task1 = tasks.create({name: "Task 1", description: "First task", type: "School", start_time: "6:00pm", end_time: "8:00pm", monday: true, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: two}) 
+      expect(task1.description).to eq("First task")
+      updated_task1 = tasks.update({id: task1.id, schedule: two, description: "New Description"})
+      expect(updated_task1).to be_a(XTask::Task)
+      expect(updated_task1.description).to eq("New Description")
+    end
+  end
 end
-
-
-
-
-
-
