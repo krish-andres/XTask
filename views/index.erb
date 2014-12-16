@@ -22,7 +22,6 @@
             <a class="navbar-brand" href="/"><h2>XTask</h2></a>
           </div>
            <div id="navbar" class="navbar-collapse collapse">
-            <% unless signed_in? %>
               <form action="/signin" method="post" class="navbar-form navbar-right" role="form">
                 <div class="form-group">
                   <input name="username" type="text" placeholder="Username" class="form-control">
@@ -32,11 +31,6 @@
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
               </form>
-            <% else %>
-              <form action="/signout" method="get" class="navbar-form navbar right" role="form">
-                 <button type="submit" class="btn btn-success">Sign Out</button>
-              </form>
-            <% end %>
           </div><!--/.navbar-collapse -->
         </div>
       </div>
