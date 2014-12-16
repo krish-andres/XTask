@@ -39,7 +39,7 @@ describe XTask::UserRepo do
     end
 
     it "finds a user in the database by username" do
-      user = users.find_by({username: "third"})
+      user = users.find_by({username: "third"}).first
       expect(user).to be_a(XTask::User)
       expect(user.username).to eq("third")
     end    
