@@ -119,7 +119,32 @@ get '/signout' do
   redirect to('/')
 end
 
+get '/schedules/:schedule_id/tasks/:id/edit' do
+  @schedule_id = params[:schedule_id]
+  @task = XTask::TaskRepo.new.find(params[:id])
+
+  erb :edit_task
 
 
+end
+
+put '/schedules/:schedule_id/tasks/:id' do
+  puts params
+  @name = params[:taskName]
+  @description = params[:taskDesc]
+  @type = params[:taskType]
+  @start_time = params[:taskStart]
+  @end_time = params[:taskEnd]
+  @monday = params[:monday] 
+  @tuesday = params[:tuesday]
+  @wednesday = params[:wednesday]
+  @thursday = params[:thursday]
+  @friday = params[:friday]
+  @saturday = params[:saturday]
+  @sunday = params[:sunday]
+  @schedule = XTask::ScheduleRepo.new.find(params[:schedule_id])
+  XTask::TaskRepo.new.update({id: params[:id], name: @name, description: @description, type: @type, start_time: @start_time, end_time: @end_time, monday: @monday, tuesday: @tuesday, wednesday: @wednesday, thursday: @thursday, friday: @friday, saturday: @saturday, sunday: @sunday, schedule: @schedule})
+  redirect to("/schedules/#{@schedule.id}")
+end
 
 

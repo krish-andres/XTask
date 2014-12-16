@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>XTask</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/cover.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  
+    <div class="masthead clearfix schedule-top">
+      <div class="nav-wrapper">      
+          <a class="navbar-brand" href="/"><h2>XTask</h2></a>
+         <div id="navbar" class="navbar-collapse collapse">
+          <form action="/signout" method="get" class="navbar-form navbar-right" role="form">
+              <button type="submit" class="btn btn-success">Sign Out</button>
+          </form>
+        </div> 
+      </div>       
+    </div>
+
+  <div class="task-wrapper">
+  <div class="site-wrapper">
+  <div class="site-wrapper-inner">
+  <div class="task-constrictor">
+
+    <div class="container emp_space-5 space_top-3 container-form">
+      <h2 class="emp_space-3"><%= @task.name %></h2>
+
+      <form action="/schedules/<%= @schedule_id %>/tasks/<%=@task.id%>" method="POST">
+        <input type="hidden" name="_method" value="put">
+        <h4 class="task-title">Add Task</h4>
+        <div class="col-md-6">
+          <input id="taskName" type="text" name="taskName" class="form-control" placeholder="Name" value="<%=@task.name%>">
+        </div>
+        <div class="col-md-6 form-group">
+          <input id="taskDesc" type="text" name="taskDesc" class="form-control" placeholder="Description" value="<%=@task.description%>">
+        </div>
+
+        <div class="col-md-12 emp_space-1">
+        </div>
+
+        <div class="col-md-4">
+          <label for="taskType">Select Type:</label> 
+          <select name="taskType" id="taskType" class="form-control">
+            <option value="School">School</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Social">Social</option>
+            <option value="Housekeeping">Housekeeping</option>
+            <option value="Other" selected="selected">Other</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="taskStart">Start Time:</label>
+          <input id="taskStart" type="time" name="taskStart" class="form-control" value="<%=@task.start_time%>">
+        </div>
+        <div class="col-md-4">
+          <label for="taskEnd">End Time:</label>
+          <input id="taskEnd" type="time" name="taskEnd" class="form-control" value="<%=@task.end_time%>">
+        </div>
+
+        <div class="col-md-12 day_check">
+          <label>Day(s)</label>
+          <input type="hidden" name="monday" value=false>
+          <input type="checkbox" name="monday" value=true>Monday 
+          <input type="hidden" name="tuesday" value=false>
+          <input type="checkbox" name="tuesday" value=true>Tuesday 
+          <input type="hidden" name="wednesday" value=false> 
+          <input type="checkbox" name="wednesday" value=true>Wednesday 
+          <input type="hidden" name="thursday" value=false>
+          <input type="checkbox" name="thursday" value=true>Thursday 
+          <input type="hidden" name="friday" value=false>
+          <input type="checkbox" name="friday" value=true>Friday 
+          <input type="hidden" name="saturday" value=false>
+          <input type="checkbox" name="saturday" value=true>Saturday 
+          <input type="hidden" name="sunday" value=false>
+          <input type="checkbox" name="sunday" value=true>Sunday 
+        </div>
+        <div>
+          <input type="hidden" name="scheduleId" value="<%= @schedule_id %>">
+        </div>
+          
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-2">
+          <input type="submit" class="form-control btn-primary" value="Update Task">
+        </div>
+        <div class="col-md-5">
+        </div>
+      </form>
+     </div>  
+        <div class="col-md-12 emp_space-5">
+        </div>
+ 
+      </div> 
+    
+    </div>  
+    </div>  
+    </div>  
+   </div> 
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
