@@ -31,7 +31,7 @@
   <div class="site-wrapper-inner">
   <div class="task-constrictor">
 
-
+    <div class="container emp_space-5 space_top-3">
       <h2 class="emp_space-3"><%= @schedule.name %></h2>
 
       <form action="/schedules/<%= @schedule.id %>/tasks" method="post">
@@ -95,114 +95,117 @@
         <div class="col-md-5">
         </div>
       </form>
-      
-      <div class="col-md-12 emp_space-5">
-      </div>
+     </div>  
+        <div class="col-md-12 emp_space-5">
+        </div>
 
-      <div class="col-md-3">
-        <span class="task-title"><h3>Monday</h3>
-        <ul>
-        <% @monday.each do |x| %>
-          <li class="emp_space-2">
-          <span class="bold"><%= x.name %></span></strong><br>
-          <%= x.start_time %> - <%= x.end_time %><br>
-          <%= x.description %><br>
-          <%= x.type %><br>          
-          </li>
-        <% end %>
-        </ul>
-      </div>
-
-      <div>
+      <div class="container">
         <div class="col-md-3">
-          <h3>Tuesday</h3>
+          <span class="task-title"><h3>Monday</h3>
           <ul>
-            <% @tuesday.each do |x| %>  
+          <% @monday.each do |x| %>
+            <li class="emp_space-2">
+            <span class="bold"><%= x.name %></span></strong><br>
+            <%= x.start_time %> - <%= x.end_time %><br>
+            <%= x.description %><br>
+            <%= x.type %><br>          
+            </li>
+          <% end %>
+          </ul>
+        </div>
+
+        <div>
+          <div class="col-md-3">
+            <h3>Tuesday</h3>
+            <ul>
+              <% @tuesday.each do |x| %>  
+                <li class="emp_space-2">
+                  <span class="bold"><%= x.name %></span><br />
+                  <%= x.start_time %> - <%= x.end_time %><br />
+                  <%= x.description %><br />
+                  <%= x.type %><br />
+                  <br />
+                  
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="col-md-3">
+            <h3>Wednesday</h3>
+            <ul>
+              <% @wednesday.each do |x| %>  
+                <li class="emp_space-2">
+                  <span class="bold"><%= x.name %></span><br />
+                  <%= x.start_time %> - <%= x.end_time %><br />
+                  <%= x.description %><br />
+                  <%= x.type %><br>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="col-md-3">
+            <h3>Thursday</h3>
+            <ul>
+              <% @thursday.each do |x| %>  
+                <li class="emp_space-2">
+                  <span class="bold"><%= x.name %></span><br />
+                  <%= x.start_time %> - <%= x.end_time %><br />
+                  <%= x.description %><br />
+                  <%= x.type %><br />                            
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div> 
+
+        <div class="emp_space-2 col-md-12">
+        </div>
+
+        <div class="col-md-4">
+          <h3>Friday</h3>
+          <ul>
+            <% @friday.each do |x| %>  
               <li class="emp_space-2">
                 <span class="bold"><%= x.name %></span><br />
-                <%= x.start_time %> - <%= x.end_time %><br />
+                <%= x.start_time %> - <%= x.end_time %><br>
                 <%= x.description %><br />
-                <%= x.type %><br />
-                <br />
-                
+                <%= x.type %><br>              
               </li>
             <% end %>
           </ul>
         </div>
-
-        <div class="col-md-3">
-          <h3>Wednesday</h3>
+        
+        <div class="col-md-4">
+          <h3>Saturday</h3>
           <ul>
-            <% @wednesday.each do |x| %>  
+            <% @saturday.each do |x| %>  
               <li class="emp_space-2">
                 <span class="bold"><%= x.name %></span><br />
-                <%= x.start_time %> - <%= x.end_time %><br />
+                <%= x.start_time %> - <%= x.end_time %><br>
                 <%= x.description %><br />
-                <%= x.type %><br>
+                <%= x.type %>
               </li>
             <% end %>
           </ul>
         </div>
+         
 
-        <div class="col-md-3">
-          <h3>Thursday</h3>
+        <div class="col-md-4">
+          <h3>Sunday</h3>
           <ul>
-            <% @thursday.each do |x| %>  
+            <% @sunday.each do |x| %>  
               <li class="emp_space-2">
                 <span class="bold"><%= x.name %></span><br />
                 <%= x.start_time %> - <%= x.end_time %><br />
                 <%= x.description %><br />
-                <%= x.type %><br />                            
+                <%= x.type %>             
               </li>
             <% end %>
           </ul>
         </div>
-      </div>  
-
-      <div class="emp_space-2 col-md-12">
-      </div>
-
-      <div class="col-md-4">
-        <h3>Friday</h3>
-        <ul>
-          <% @friday.each do |x| %>  
-            <li class="emp_space-2">
-              <span class="bold"><%= x.name %></span><br />
-              <%= x.start_time %> - <%= x.end_time %><br>
-              <%= x.description %><br />
-              <%= x.type %><br>              
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      
-      <div class="col-md-4">
-        <h3>Saturday</h3>
-        <ul>
-          <% @saturday.each do |x| %>  
-            <li class="emp_space-2">
-              <span class="bold"><%= x.name %></span><br />
-              <%= x.start_time %> - <%= x.end_time %><br>
-              <%= x.description %><br />
-              <%= x.type %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-
-      <div class="col-md-4">
-        <h3>Sunday</h3>
-        <ul>
-          <% @sunday.each do |x| %>  
-            <li class="emp_space-2">
-              <span class="bold"><%= x.name %></span><br />
-              <%= x.start_time %> - <%= x.end_time %><br />
-              <%= x.description %><br />
-              <%= x.type %>             
-            </li>
-          <% end %>
-        </ul>
-      </div>
+      </div> 
     
     </div>  
     </div>  

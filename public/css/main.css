@@ -17,6 +17,18 @@ p:hover {
   padding-top:5px;
   border-radius:7px;
 }
+.task-constrictor .container {
+  background-color:#444;
+  height:100%;
+  width:100%;
+  color:white;
+  padding:20px;
+  padding-top:0px;
+  border-radius:7px;
+}
+.space_top-3 {
+  margin-top:30px;
+}
 .masthead{
   background-color: black;
   width:100%;
@@ -43,7 +55,13 @@ p:hover {
 .task-wrapper {
   position: absolute;
   top:7vh;
-
+}
+.task-container {
+  background-color: #444;
+  width:100%;
+  border-radius:7px;
+  padding:20px;
+  height:100%;
 }
 .task-constrictor {
   width: 75%;
@@ -55,12 +73,13 @@ p:hover {
 .task-constrictor h3 {
   width:70%;
   padding-bottom:5px;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #222;
   margin: 0 auto;
   margin-bottom:10px;
 }
-
-
+.task-constrictor .col-md-2 {
+  border-radius:5px;
+}
 .day_check {
   margin-top: 15px;
   font-size:1.2em;
