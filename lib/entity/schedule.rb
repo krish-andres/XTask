@@ -1,11 +1,11 @@
 module XTask
   class Schedule
-    attr_reader :id, :name, :username
+    attr_reader :id, :name, :user
 
     def initialize(params)
       @id = params[:id]
       @name = params[:name]
-      @username = params[:username]
+      @user = params[:user]
     end
   end
 end

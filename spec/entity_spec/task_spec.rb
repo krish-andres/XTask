@@ -12,7 +12,8 @@ describe XTask::Task do
     sunday: false,
     start_time: '12:00 am',
     end_time: '1:00 pm',
-    type: 'Project'
+    type: 'School', 
+    description: "First Task", 
     }) 
   }
 

@@ -6,7 +6,7 @@ module XTask
         CREATE TABLE IF NOT EXISTS schedules(
           id SERIAL PRIMARY KEY, 
           name TEXT, 
-          username TEXT
+          user_id INTEGER REFERENCES users (id)
         );
       SQL
       @db.exec(command)
@@ -22,23 +22,24 @@ module XTask
     def build_schedule(params)
       id = params['id']
       name = params['name']
-      username = params['username']
+      user_id = params['user_id']
+      user = XTask::UserRepo.new.find(user_id)
       XTask::Schedule.new({
         id: id, 
         name: name, 
-        username: username
+        user: user
       })
     end
 
     def create(params)
       name = params[:name]
-      username = params[:username]
+      user_id = params[:user].id
       command = <<-SQL
-        INSERT INTO schedules(name, username)
+        INSERT INTO schedules(name, user_id)
         VALUES ($1,$2)
         RETURNING *; 
       SQL
-      result = @db.exec(command, [name, username])
+      result = @db.exec(command, [name, user_id])
       build_schedule(result.first)
     end
 
@@ -52,7 +53,8 @@ module XTask
 
     def find_by(params)
       name = params[:name]
-      username = params[:username]
+      user = params[:user]
+      user_id = user.id if user
       command = <<-SQL
         SELECT * FROM schedules
       SQL
@@ -62,11 +64,11 @@ module XTask
           WHERE name=$1;
         SQL
         results = @db.exec(command + spec, [name])
-      elsif username
+      elsif user
         spec = <<-SQL
-          WHERE username=$1;
+          WHERE user_id=$1;
         SQL
-        results = @db.exec(command + spec, [username])
+        results = @db.exec(command + spec, [user_id])
       end
       results.map { |result| build_schedule(result) }
     end

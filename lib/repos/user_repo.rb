@@ -6,7 +6,8 @@ module XTask
         CREATE TABLE IF NOT EXISTS users(
           id SERIAL PRIMARY KEY,
           username TEXT, 
-          password TEXT
+          password TEXT, 
+          password_salt TEXT
         );
       SQL
       @db.exec(command)
@@ -23,22 +24,25 @@ module XTask
       id = params['id']
       username = params['username']
       password = params['password']
+      password_salt = params['password_salt']
       XTask::User.new({
         id: id, 
         username: username, 
-        password: password
+        password: password, 
+        password_salt: password_salt
       })
     end
 
     def create(params)
       username = params[:username]
       password = params[:password]
+      password_salt = params[:password_salt]
       command = <<-SQL
-        INSERT INTO users(username, password)
-        VALUES ($1,$2)
+        INSERT INTO users(username, password, password_salt)
+        VALUES ($1,$2,$3)
         RETURNING *;
       SQL
-      result = @db.exec(command, [username, password])
+      result = @db.exec(command, [username, password, password_salt])
       build_user(result.first)
     end
 
@@ -63,8 +67,8 @@ module XTask
       command = <<-SQL
         SELECT * FROM users WHERE username=$1;
       SQL
-      results = @db.exec(command, [username])
-      results.map { |result| build_user(result) }
+      result = @db.exec(command, [username])
+      build_user(result.first)
     end
 
   end

@@ -2,12 +2,18 @@ require_relative '../spec_helper.rb'
 
 describe XTask::TaskRepo do
   let(:tasks) { XTask::TaskRepo.new }
+  let(:users) { XTask::UserRepo.new }
+  let(:user1) { users.create({username: "Bob", password: "secret"}) }
+  let(:user2) { users.create({username: "Joe", password: "foobar"}) }
   let(:schedules) { XTask::ScheduleRepo.new }
-  let(:one) { schedules.create({name: "Schedule 1", username: "Bob"})}
-  let(:two) { schedules.create({name: "Schedule 2", username: "Joe"})}
+  let(:one) { schedules.create({name: "Schedule 1", user: user1})}
+  let(:two) { schedules.create({name: "Schedule 2", user: user2})}
+  
   before(:each) do
+    users.drop_table
     schedules.drop_table
     tasks.drop_table
+    users.create_table
     schedules.create_table
     tasks.create_table
   end

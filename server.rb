@@ -81,8 +81,6 @@ end
 
 
 
-
-
 get '/signup' do
   erb :signup
 end
@@ -91,10 +89,10 @@ post '/signup' do
   puts params
   @username = params[:username]
   @password_salt = BCrypt::Engine.generate_salt
-  @password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
+  @password_hash = BCrypt::Engine.hash_secret(params[:password], @password_salt)
 
 
-  XTask::UserRepo.new.create({username: @username, password: @password_hash})
+  XTask::UserRepo.new.create({username: @username, password: @password_hash, password_salt: @password_salt})
 
   session[:username] = params[:username]
   redirect to('/')
@@ -105,7 +103,12 @@ get '/signin' do
 end
 
 post '/signin' do
-
+  @username = params[:username]
+  @user = XTask::UserRepo.new.find_by(username: @username)
+  if @user && @user.password == BCrypt::Engine.hash_secret(params[:password], @user.password_salt)
+    session[:username] = params[:username]
+    redirect to('/')
+  end
 
 end
 

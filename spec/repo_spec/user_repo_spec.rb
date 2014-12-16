@@ -1,7 +1,10 @@
 require_relative '../spec_helper.rb'
+require 'bcrypt'
 
 describe XTask::UserRepo do
   let(:users) { XTask::UserRepo.new }
+  let(:password_salt) { BCrypt::Engine.generate_salt }
+
   before(:each) do
     users.drop_table
     users.create_table
@@ -10,7 +13,7 @@ describe XTask::UserRepo do
   describe "create and find" do
     
     it "adds a user to the database" do
-      user = users.create({username: "example", password: "secret"})
+      user = users.create({username: "example", password: "secret", password_salt: password_salt})
       expect(user).to be_a(XTask::User)
       expect(user.username).to eq("example")
     end
@@ -37,7 +40,7 @@ describe XTask::UserRepo do
     end
 
     it "finds a user in the database by username" do
-      user = users.find_by({username: "third"}).first
+      user = users.find_by({username: "third"})
       expect(user).to be_a(XTask::User)
       expect(user.username).to eq("third")
     end    
