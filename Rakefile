@@ -1,4 +1,6 @@
+require 'bcrypt'
 require_relative 'xtask.rb'
+
 
 task :prep do
   user_repo = XTask::UserRepo.new
@@ -10,6 +12,8 @@ task :prep do
   user_repo.create_table
   schedule_repo.create_table
   task_repo.create_table
+  # password_salt = BCrypt::Engine.generate_salt
+  # password_hash = BCrypt::Engine.hash_secret("secret", @password_salt)
   user1 = user_repo.create({username: "Bob", password: "foobar"})
   user2 = user_repo.create({username: "Joe", password: "secret"})
   schedule1 = schedule_repo.create({name: "Bob's Schedule", user: user1})

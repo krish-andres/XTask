@@ -68,7 +68,8 @@ module XTask
         SELECT * FROM users WHERE username=$1;
       SQL
       result = @db.exec(command, [username])
-      build_user(result.first)
+      # build_user(result.first)
+      result.map { |r| build_user(r) }
     end
 
   end

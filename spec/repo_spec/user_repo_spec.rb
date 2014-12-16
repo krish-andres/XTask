@@ -3,7 +3,6 @@ require 'bcrypt'
 
 describe XTask::UserRepo do
   let(:users) { XTask::UserRepo.new }
-  let(:password_salt) { BCrypt::Engine.generate_salt }
 
   before(:each) do
     users.drop_table
@@ -13,7 +12,7 @@ describe XTask::UserRepo do
   describe "create and find" do
     
     it "adds a user to the database" do
-      user = users.create({username: "example", password: "secret", password_salt: password_salt})
+      user = users.create({username: "example", password: "secret"})
       expect(user).to be_a(XTask::User)
       expect(user.username).to eq("example")
     end
