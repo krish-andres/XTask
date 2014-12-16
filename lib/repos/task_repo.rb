@@ -166,5 +166,15 @@ module XTask
       results.map { |result| build_task(result) }
     end
 
+    def delete(params)
+      id = params[:id]
+      schedule = params[:schedule]
+      schedule_id = schedule.id
+      command = <<-SQL
+        DELETE FROM tasks WHERE id=$1 AND schedule_id=$2;
+      SQL
+      result = @db.exec(command, [id, schedule_id])
+    end
+
   end
 end

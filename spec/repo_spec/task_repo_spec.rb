@@ -74,11 +74,16 @@ describe XTask::TaskRepo do
     end    
   end
 
-  # describe "update" do
-  #   it "changes the specified attributes" do
+  describe "delete" do
+    it "deletes the selected task" do
+      task1 = tasks.create({name: "Task 1", description: "First task", type: "School", start_time: "6:00pm", end_time: "8:00pm", monday: true, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: two}) 
+      task2 = tasks.create({name: "Task 2", description: "Second task", type: "Personal", start_time: "6:00am", end_time: "8:00am", monday: true, tuesday: false, wednesday: true, thursday: true, friday: false, saturday: false, sunday: false, schedule: two}) 
 
-  #   end
-  # end
+      tasks.delete({id: task1.id, schedule: two})
+      two_tasks = tasks.find_all({schedule: two})
+      expect(two_tasks.length).to eq(1)
+    end
+  end
 end
 
 
