@@ -40,6 +40,7 @@ get '/dashboard' do
     redirect to('/')
   end
 
+  
   @user = XTask::UserRepo.new.find_by(username: username)
   @schedules = XTask::ScheduleRepo.new.find_by(user: @user)
   erb :user
@@ -104,7 +105,7 @@ post '/signup' do
   XTask::UserRepo.new.create({username: @username, password: @password_hash, password_salt: @password_salt})
 
   session[:username] = params[:username]
-  redirect to('/')
+  redirect to('/dashboard')
 end
 
 get '/signin' do
@@ -116,7 +117,7 @@ post '/signin' do
   @user = XTask::UserRepo.new.find_by(username: @username)
   if @user && @user.password == BCrypt::Engine.hash_secret(params[:password], @user.password_salt)
     session[:username] = params[:username]
-    redirect to('/')
+    redirect to('/dashboard')
   end
 
 end
