@@ -2,11 +2,17 @@
   color:white;
   margin-top:-25px;
 }
+p:hover {
+  text-decoration:none;
+}
 .container {
   background-color:#444;
   height:100%;
   width:100%;
   color:white;
+  padding:20px;
+  padding-top:10px;
+  border-radius:5px;
 }
 .masthead{
   background-color: black;
@@ -19,6 +25,7 @@
 }
 .schedule-p{
   color:#333;
+  font-size:1.2em;
 }
 .black {
   color: #333;
@@ -27,7 +34,8 @@
   font-weight:600;
 }
 .task_form {
-  margin-top: 16vh;
+  margin-top: 10vh;
+
 }
 .task_form input {
   margin-top:7px;
@@ -51,4 +59,11 @@
 }
 .emp_space {
   margin-bottom:50px;
+}
+.user-form{
+  margin-top:-10vh;
+  margin-bottom:10vh;
+}
+.user-form input {
+  margin-bottom:10px;
 }

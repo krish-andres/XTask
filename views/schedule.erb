@@ -100,19 +100,29 @@
       <div class="col-md-12 emp_space">
       </div>
 
+    <table>
       <div class="col-md-3">
-        <h3>Monday</h3>
-        <ul>
-          <% @monday.each do |x| %>  
-            <li>
-              <strong><%= x.name %></strong><br />
-              <%= x.description %><br />
-              <%= x.type %><br />
-              <%= x.start_time %><br />
-              <%= x.end_time %><br />
-            </li>
+        
+        <th>Monday</th>
+        <% @monday.each do |x| %> 
+          <tr> 
+              <th><%= x.name %></th>
+          </tr>
+          <tr>    
+              <td><%= x.description %></td>
+          </tr>
+          <tr>    
+              <td><%= x.type %></td>
+          </tr>
+          <tr>    
+              <td><%= x.start_time %></td>
+          </tr>
+          <tr>    
+              <td><%= x.end_time %></td>
+          </tr>    
           <% end %>
-        </ul>
+        
+        </table>
       </div>
 
       <div class="col-md-3">
@@ -204,6 +214,27 @@
           <% end %>
         </ul>
       </div>
+      <table>
+        <th>Monday</th>
+        <% @sunday.each do |x| %> 
+          <tr> 
+              <th><%= x.name %></th>
+          </tr>
+          <tr>    
+              <td><%= x.description %></td>
+          </tr>
+          <tr>    
+              <td><%= x.type %></td>
+          </tr>
+          <tr>    
+              <td><%= x.start_time %></td>
+          </tr>
+          <tr>    
+              <td><%= x.end_time %></td>
+          </tr>    
+          <% end %>
+        
+      </table>
     </div>  
     </div>  
     </div>  

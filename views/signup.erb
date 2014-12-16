@@ -4,7 +4,7 @@
     <title>XTask</title>
   </head>
   <body>
-    <form action="/signup" method="post">
+    <!-- <form action="/signup" method="post">
       <div>
         <label for="username">Username:</label>
         <input id="username" type="text" name="username">
@@ -21,6 +21,28 @@
         <input type="submit" value="Sign Up">
         <input type="reset" value="Clear">
       </div>
-    </form>
+    </form> -->
+     <form action="/signup" method="post" class="task_form col-md-6">
+            <h3>Sign Up</h3>
+            <div>
+              <input id="username" type="text" name="username" class="form-control" placeholder="Username">
+            </div>
+            <div>
+              <input id="password" type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <div>
+              <input id="checkpassword" type="password" name="checkpassword" class="form-control" placeholder="Confirm Password">
+            </div>
+              <div class="col-md-2">
+              </div>
+            <div class="col-md-4">
+              <input type="submit" value="Sign Up" class="submit_button form-control">
+            </div>
+            <div class="col-md-4">  
+              <input type="reset" value="Clear" class="submit_button form-control">
+            </div>
+              <div class="col-md-2">
+              </div>
+          </form>
   </body>
 </html>
