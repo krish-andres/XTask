@@ -81,7 +81,26 @@ module XTask
       results.map { |result| build_schedule(result) }
     end
 
+    def update(params)
+      id = params[:id]
+      name = params[:name]
+      command = <<-SQL
+        UPDATE schedules
+        SET name=$2
+        WHERE schedules.id=$1
+        RETURNING *;
+      SQL
+      result = @db.exec(command, [id, name])
+      build_schedule(result.first)
+    end
 
+    def delete(id)
+      command = <<-SQL
+        DELETE FROM schedules
+        WHERE id=$1;
+      SQL
+      result = @db.exec(command, [id])
+    end
 
   end
 end

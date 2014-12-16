@@ -63,4 +63,24 @@ describe XTask::ScheduleRepo do
       expect(all_schedules.first).to be_a(XTask::Schedule)
     end
   end
+
+  describe "update" do
+    it "updates the schedule name" do
+      schedule = schedules.create({name: "Schedule 1", user: user1})
+      expect(schedule.name).to eq('Schedule 1')
+      updated_schedule = schedules.update({id: schedule.id, name: "New Name"})
+      expect(updated_schedule).to be_a(XTask::Schedule)
+      expect(updated_schedule.name).to eq("New Name")
+    end
+  end
+
+  describe "delete" do
+    it "removes an entry from the database" do
+      schedule1 = schedules.create({name: "Schedule 1", user: user1})
+      schedule2 = schedules.create({name: "Schedule 2", user: user1})
+      schedules.delete(schedule1.id)
+      all_schedules = schedules.find_all
+      expect(all_schedules.length).to eq(1)
+    end
+  end
 end

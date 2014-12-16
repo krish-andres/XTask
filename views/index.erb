@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    
     <div class="masthead clearfix">
         <div class="nav-wrapper">
           <!-- <h3 class="masthead-brand">XTask</h3> -->
@@ -22,15 +21,21 @@
             <a class="navbar-brand" href="/"><h2>XTask</h2></a>
           </div>
            <div id="navbar" class="navbar-collapse collapse">
-            <form action="/signin" method="post" class="navbar-form navbar-right" role="form">
-              <div class="form-group">
-                <input name="username" type="text" placeholder="Username" class="form-control">
-              </div>
-              <div class="form-group">
-                <input name="password" type="password" placeholder="Password" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-success">Sign in</button>
-            </form>
+            <% unless signed_in? %>
+              <form action="/signin" method="post" class="navbar-form navbar-right" role="form">
+                <div class="form-group">
+                  <input name="username" type="text" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input name="password" type="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
+            <% else %>
+              <form action="/signout" method="get" class="navbar-form navbar right" role="form">
+                 <button type="submit" class="btn btn-success">Sign Out</button>
+              </form>
+            <% end %>
           </div><!--/.navbar-collapse -->
         </div>
       </div>
