@@ -40,7 +40,7 @@ get '/dashboard' do
 
   @user = XTask::UserRepo.new.find_by(username: username).first
   @schedules = XTask::ScheduleRepo.new.find_by(user: @user)
-  erb :user
+  erb :dashboard
 
 end
 
@@ -54,6 +54,7 @@ post '/schedules' do
   @schedule = XTask::ScheduleRepo.new.create({name: @name, user: @user})
   redirect to("/schedules/#{@schedule.id}")
 end
+
 
 get '/schedules/:id' do
   redirect to('/') unless signed_in?
@@ -146,5 +147,23 @@ put '/schedules/:schedule_id/tasks/:id' do
   XTask::TaskRepo.new.update({id: params[:id], name: @name, description: @description, type: @type, start_time: @start_time, end_time: @end_time, monday: @monday, tuesday: @tuesday, wednesday: @wednesday, thursday: @thursday, friday: @friday, saturday: @saturday, sunday: @sunday, schedule: @schedule})
   redirect to("/schedules/#{@schedule.id}")
 end
+
+delete '/schedules/:id' do
+  XTask::ScheduleRepo.new.delete(params[:id])
+  redirect to('/dashboard')
+end
+
+delete '/schedules/:schedule_id/tasks/:id' do
+  @schedule = XTask::ScheduleRepo.new.find(params[:schedule_id])
+  @task = XTask::TaskRepo.new.find(params[:id])
+  XTask::TaskRepo.new.delete(id: params[:id], schedule: @schedule)
+
+  redirect to("/schedules/#{@schedule.id}")
+
+end
+
+
+
+
 
 

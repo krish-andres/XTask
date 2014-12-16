@@ -96,6 +96,10 @@
  
       </div> 
     
+      <form action="/schedules/<%=@schedule_id%>/tasks/<%=@task.id%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
     </div>  
     </div>  
     </div>  
