@@ -55,6 +55,7 @@ p:hover {
 .task-wrapper {
   position: absolute;
   top:7vh;
+  height:100%;
 }
 .task-container {
   background-color: #444;
@@ -138,4 +139,15 @@ p:hover {
   margin-right:12px;
   font-size:1.1em;
 }
+.bottom {
+  position: absolute;
+  bottom:4vh;
+  margin-left:29vw;
+}
+
+
+
+
+
+
 
