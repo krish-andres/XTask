@@ -3,7 +3,7 @@
 <head>
   <title>XTask</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/cover.css">
   <link rel="stylesheet" href="/css/main.css">
 </head>
@@ -83,24 +83,24 @@
           <input type="hidden" name="scheduleId" value="<%= @schedule_id %>">
         </div>
           
-        <div class="col-md-4">
+        <div class="col-md-5">
         </div>
-        <div class="col-md-2">
-          <form action="/schedules/<%=@schedule_id%>/tasks/<%=@task.id%>" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit" class="form-control btn-danger">Delete</button>
-          </form>
-        </div>  
+          
         <div class="col-md-2">
           <input type="submit" class="form-control btn-primary" value="Update Task">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
         </div>
       </form>
      </div>  
         <div class="col-md-12 emp_space-5">
         </div>
- 
+        <div class="col-md-2 bottom">
+          <form action="/schedules/<%=@schedule_id%>/tasks/<%=@task.id%>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="form-control btn-danger">Delete</button>
+          </form>
+        </div>
       </div> 
     
       
